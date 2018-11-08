@@ -1,0 +1,228 @@
+mysql> create table shopping3(
+    -> id int primary key auto_increment,
+    -> name varchar(20));
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> select * from shopping3;
+Empty set (0.00 sec)
+
+mysql> insert into shopping3(name)values("Joker7");
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from shopping3;
++----+--------+
+| id | name   |
++----+--------+
+|  1 | Joker7 |
++----+--------+
+1 row in set (0.00 sec)
+
+mysql> update shopping,shopping3 set shopping.num=10,shopping3.name="maxueting" where shopping.id=1 and shopping3.id=1;
+Query OK, 2 rows affected (0.04 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from shopping3;
++----+-----------+
+| id | name      |
++----+-----------+
+|  1 | maxueting |
++----+-----------+
+1 row in set (0.00 sec)
+
+mysql> select * from shopping;
++----+--------+------+-------+
+| id | name   | num  | money |
++----+--------+------+-------+
+|  1 | Joker  |   10 | 100   |
+|  2 | Joker2 |  200 | 300   |
+|  3 | Joker3 |  300 | 200   |
++----+--------+------+-------+
+3 rows in set (0.00 sec)
+
+mysql> alter table shopping3 add money varchar(3);
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into shopping3(money)values(100);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from shopping3;
++----+-----------+-------+
+| id | name      | money |
++----+-----------+-------+
+|  1 | maxueting | NULL  |
+|  2 | NULL      | 100   |
++----+-----------+-------+
+2 rows in set (0.00 sec)
+
+mysql> alter table shopping3 add xihuan varchar(1);
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into shopping3(xihuan)values(1);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from shopping3;
++----+-----------+-------+--------+
+| id | name      | money | xihuan |
++----+-----------+-------+--------+
+|  1 | maxueting | NULL  | NULL   |
+|  2 | NULL      | 100   | NULL   |
+|  3 | NULL      | NULL  | 1      |
++----+-----------+-------+--------+
+3 rows in set (0.00 sec)
+
+mysql> alter table shopping3 add discount varchar(4);
+Query OK, 0 rows affected (0.09 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from shopping3;
++----+-----------+-------+--------+----------+
+| id | name      | money | xihuan | discount |
++----+-----------+-------+--------+----------+
+|  1 | maxueting | NULL  | NULL   | NULL     |
+|  2 | NULL      | 100   | NULL   | NULL     |
+|  3 | NULL      | NULL  | 1      | NULL     |
++----+-----------+-------+--------+----------+
+3 rows in set (0.00 sec)
+
+mysql> alter table shopping3 add wish varchar(50);
+Query OK, 0 rows affected (0.18 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> insert into shopping3(wish)values(20);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from shopping3;
++----+-----------+-------+--------+----------+------+
+| id | name      | money | xihuan | discount | wish |
++----+-----------+-------+--------+----------+------+
+|  1 | maxueting | NULL  | NULL   | NULL     | NULL |
+|  2 | NULL      | 100   | NULL   | NULL     | NULL |
+|  3 | NULL      | NULL  | 1      | NULL     | NULL |
+|  4 | NULL      | NULL  | NULL   | NULL     | 20   |
++----+-----------+-------+--------+----------+------+
+4 rows in set (0.00 sec)
+
+mysql> insert into shopping3(name)values("xiaoming");
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from shopping3;
++----+-----------+-------+--------+----------+------+
+| id | name      | money | xihuan | discount | wish |
++----+-----------+-------+--------+----------+------+
+|  1 | maxueting | NULL  | NULL   | NULL     | NULL |
+|  2 | NULL      | 100   | NULL   | NULL     | NULL |
+|  3 | NULL      | NULL  | 1      | NULL     | NULL |
+|  4 | NULL      | NULL  | NULL   | NULL     | 20   |
+|  5 | xiaoming  | NULL  | NULL   | NULL     | NULL |
++----+-----------+-------+--------+----------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into shopping3(name,money,xihuan)values("xueting",100,1),("chenxu",200,0);
+Query OK, 2 rows affected (0.02 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from shopping3;
++----+-----------+-------+--------+----------+------+
+| id | name      | money | xihuan | discount | wish |
++----+-----------+-------+--------+----------+------+
+|  1 | maxueting | NULL  | NULL   | NULL     | NULL |
+|  2 | NULL      | 100   | NULL   | NULL     | NULL |
+|  3 | NULL      | NULL  | 1      | NULL     | NULL |
+|  4 | NULL      | NULL  | NULL   | NULL     | 20   |
+|  5 | xiaoming  | NULL  | NULL   | NULL     | NULL |
+|  6 | xueting   | 100   | 1      | NULL     | NULL |
+|  7 | chenxu    | 200   | 0      | NULL     | NULL |
++----+-----------+-------+--------+----------+------+
+7 rows in set (0.00 sec)
+
+mysql> update shopping3 set name="maxueting";
+Query OK, 6 rows affected (0.09 sec)
+Rows matched: 7  Changed: 6  Warnings: 0
+
+mysql> select * from shopping3;
++----+-----------+-------+--------+----------+------+
+| id | name      | money | xihuan | discount | wish |
++----+-----------+-------+--------+----------+------+
+|  1 | maxueting | NULL  | NULL   | NULL     | NULL |
+|  2 | maxueting | 100   | NULL   | NULL     | NULL |
+|  3 | maxueting | NULL  | 1      | NULL     | NULL |
+|  4 | maxueting | NULL  | NULL   | NULL     | 20   |
+|  5 | maxueting | NULL  | NULL   | NULL     | NULL |
+|  6 | maxueting | 100   | 1      | NULL     | NULL |
+|  7 | maxueting | 200   | 0      | NULL     | NULL |
++----+-----------+-------+--------+----------+------+
+7 rows in set (0.00 sec)
+
+mysql> update shopping3 set name="maxueting" where id=1;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 1  Changed: 0  Warnings: 0
+
+mysql> select * from shopping3;
++----+-----------+-------+--------+----------+------+
+| id | name      | money | xihuan | discount | wish |
++----+-----------+-------+--------+----------+------+
+|  1 | maxueting | NULL  | NULL   | NULL     | NULL |
+|  2 | maxueting | 100   | NULL   | NULL     | NULL |
+|  3 | maxueting | NULL  | 1      | NULL     | NULL |
+|  4 | maxueting | NULL  | NULL   | NULL     | 20   |
+|  5 | maxueting | NULL  | NULL   | NULL     | NULL |
+|  6 | maxueting | 100   | 1      | NULL     | NULL |
+|  7 | maxueting | 200   | 0      | NULL     | NULL |
++----+-----------+-------+--------+----------+------+
+7 rows in set (0.00 sec)
+
+mysql> update shopping3 set name="xueting" where id=1;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from shopping3;
++----+-----------+-------+--------+----------+------+
+| id | name      | money | xihuan | discount | wish |
++----+-----------+-------+--------+----------+------+
+|  1 | xueting   | NULL  | NULL   | NULL     | NULL |
+|  2 | maxueting | 100   | NULL   | NULL     | NULL |
+|  3 | maxueting | NULL  | 1      | NULL     | NULL |
+|  4 | maxueting | NULL  | NULL   | NULL     | 20   |
+|  5 | maxueting | NULL  | NULL   | NULL     | NULL |
+|  6 | maxueting | 100   | 1      | NULL     | NULL |
+|  7 | maxueting | 200   | 0      | NULL     | NULL |
++----+-----------+-------+--------+----------+------+
+7 rows in set (0.00 sec)
+
+mysql> update shopping3 set name="xiaoming" where id=5;
+Query OK, 1 row affected (0.03 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from shopping3;
++----+-----------+-------+--------+----------+------+
+| id | name      | money | xihuan | discount | wish |
++----+-----------+-------+--------+----------+------+
+|  1 | xueting   | NULL  | NULL   | NULL     | NULL |
+|  2 | maxueting | 100   | NULL   | NULL     | NULL |
+|  3 | maxueting | NULL  | 1      | NULL     | NULL |
+|  4 | maxueting | NULL  | NULL   | NULL     | 20   |
+|  5 | xiaoming  | NULL  | NULL   | NULL     | NULL |
+|  6 | maxueting | 100   | 1      | NULL     | NULL |
+|  7 | maxueting | 200   | 0      | NULL     | NULL |
++----+-----------+-------+--------+----------+------+
+7 rows in set (0.00 sec)
+
+mysql> update shopping3 set wish="10" where id=2;
+Query OK, 1 row affected (0.10 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from shopping3;
++----+-----------+-------+--------+----------+------+
+| id | name      | money | xihuan | discount | wish |
++----+-----------+-------+--------+----------+------+
+|  1 | xueting   | NULL  | NULL   | NULL     | NULL |
+|  2 | maxueting | 100   | NULL   | NULL     | 10   |
+|  3 | maxueting | NULL  | 1      | NULL     | NULL |
+|  4 | maxueting | NULL  | NULL   | NULL     | 20   |
+|  5 | xiaoming  | NULL  | NULL   | NULL     | NULL |
+|  6 | maxueting | 100   | 1      | NULL     | NULL |
+|  7 | maxueting | 200   | 0      | NULL     | NULL |
++----+-----------+-------+--------+----------+------+
+7 rows in set (0.00 sec)
