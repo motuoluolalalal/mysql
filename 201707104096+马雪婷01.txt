@@ -1,0 +1,181 @@
+mysql> select * from emp;
++-------+--------+-----------+------+------------+------+---------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM    | DEPTNO |
++-------+--------+-----------+------+------------+------+---------+--------+
+|  7369 | SMITH  | CLERK     | 7902 | 1980/12/17 |  800 |         | 20     |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981/2/20  | 1600 | 300.00  | 30     |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981/2/22  | 1250 | 500.00  | 30     |
+|  7566 | JONES  | MANAGER   | 7839 | 1981/4/2   | 2975 |         | 20     |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981/9/28  | 1250 | 1400.00 | 30     |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981/5/1   | 2850 |         | 30     |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981/6/9   | 2450 |         | 10     |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987/4/19  | 3000 |         | 20     |
+|  7839 | KING   | PRESIDENT |      | 1981/11/17 | 5000 |         | 10     |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981/9/8   | 1500 | 0.00    | 30     |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987/5/23  | 1100 |         | 20     |
+|  7900 | JAMES  | CLERK     | 7698 | 1981/12/3  |  950 |         | 30     |
+|  7902 | FORD   | ANALYST   | 7566 | 1981/12/3  | 3000 |         | 20     |
+|  7934 | MILLER | CLERK     | 7782 | 1982/1/23  | 1300 |         | 10     |
++-------+--------+-----------+------+------------+------+---------+--------+
+14 rows in set (0.01 sec)
+
+mysql> select * from emp where deptno=1;
+Empty set (0.00 sec)
+
+mysql> select * from emp where deptno=20;
++-------+-------+---------+------+------------+------+------+--------+
+| EMPNO | ENAME | JOB     | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+-------+---------+------+------------+------+------+--------+
+|  7369 | SMITH | CLERK   | 7902 | 1980/12/17 |  800 |      | 20     |
+|  7566 | JONES | MANAGER | 7839 | 1981/4/2   | 2975 |      | 20     |
+|  7788 | SCOTT | ANALYST | 7566 | 1987/4/19  | 3000 |      | 20     |
+|  7876 | ADAMS | CLERK   | 7788 | 1987/5/23  | 1100 |      | 20     |
+|  7902 | FORD  | ANALYST | 7566 | 1981/12/3  | 3000 |      | 20     |
++-------+-------+---------+------+------------+------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp where deptno=10;
++-------+--------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+-----------+------+------------+------+------+--------+
+|  7782 | CLARK  | MANAGER   | 7839 | 1981/6/9   | 2450 |      | 10     |
+|  7839 | KING   | PRESIDENT |      | 1981/11/17 | 5000 |      | 10     |
+|  7934 | MILLER | CLERK     | 7782 | 1982/1/23  | 1300 |      | 10     |
++-------+--------+-----------+------+------------+------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from emp order by deptno;
++-------+--------+-----------+------+------------+------+---------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM    | DEPTNO |
++-------+--------+-----------+------+------------+------+---------+--------+
+|  7782 | CLARK  | MANAGER   | 7839 | 1981/6/9   | 2450 |         | 10     |
+|  7839 | KING   | PRESIDENT |      | 1981/11/17 | 5000 |         | 10     |
+|  7934 | MILLER | CLERK     | 7782 | 1982/1/23  | 1300 |         | 10     |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987/4/19  | 3000 |         | 20     |
+|  7566 | JONES  | MANAGER   | 7839 | 1981/4/2   | 2975 |         | 20     |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987/5/23  | 1100 |         | 20     |
+|  7369 | SMITH  | CLERK     | 7902 | 1980/12/17 |  800 |         | 20     |
+|  7902 | FORD   | ANALYST   | 7566 | 1981/12/3  | 3000 |         | 20     |
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981/5/1   | 2850 |         | 30     |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981/2/20  | 1600 | 300.00  | 30     |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981/2/22  | 1250 | 500.00  | 30     |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981/9/8   | 1500 | 0.00    | 30     |
+|  7900 | JAMES  | CLERK     | 7698 | 1981/12/3  |  950 |         | 30     |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981/9/28  | 1250 | 1400.00 | 30     |
++-------+--------+-----------+------+------------+------+---------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select * from emp order by deptno desc;
++-------+--------+-----------+------+------------+------+---------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM    | DEPTNO |
++-------+--------+-----------+------+------------+------+---------+--------+
+|  7698 | BLAKE  | MANAGER   | 7839 | 1981/5/1   | 2850 |         | 30     |
+|  7499 | ALLEN  | SALESMAN  | 7698 | 1981/2/20  | 1600 | 300.00  | 30     |
+|  7521 | WARD   | SALESMAN  | 7698 | 1981/2/22  | 1250 | 500.00  | 30     |
+|  7844 | TURNER | SALESMAN  | 7698 | 1981/9/8   | 1500 | 0.00    | 30     |
+|  7900 | JAMES  | CLERK     | 7698 | 1981/12/3  |  950 |         | 30     |
+|  7654 | MARTIN | SALESMAN  | 7698 | 1981/9/28  | 1250 | 1400.00 | 30     |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987/4/19  | 3000 |         | 20     |
+|  7566 | JONES  | MANAGER   | 7839 | 1981/4/2   | 2975 |         | 20     |
+|  7876 | ADAMS  | CLERK     | 7788 | 1987/5/23  | 1100 |         | 20     |
+|  7369 | SMITH  | CLERK     | 7902 | 1980/12/17 |  800 |         | 20     |
+|  7902 | FORD   | ANALYST   | 7566 | 1981/12/3  | 3000 |         | 20     |
+|  7782 | CLARK  | MANAGER   | 7839 | 1981/6/9   | 2450 |         | 10     |
+|  7839 | KING   | PRESIDENT |      | 1981/11/17 | 5000 |         | 10     |
+|  7934 | MILLER | CLERK     | 7782 | 1982/1/23  | 1300 |         | 10     |
++-------+--------+-----------+------+------------+------+---------+--------+
+14 rows in set (0.00 sec)
+
+mysql> select * from emp order by deptno limit5;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'limit5' at line 1
+mysql> select * from emp order by deptno limit 5;
++-------+--------+-----------+------+------------+------+------+--------+
+| EMPNO | ENAME  | JOB       | MGR  | HIREDATE   | SAL  | COMM | DEPTNO |
++-------+--------+-----------+------+------------+------+------+--------+
+|  7782 | CLARK  | MANAGER   | 7839 | 1981/6/9   | 2450 |      | 10     |
+|  7839 | KING   | PRESIDENT |      | 1981/11/17 | 5000 |      | 10     |
+|  7934 | MILLER | CLERK     | 7782 | 1982/1/23  | 1300 |      | 10     |
+|  7788 | SCOTT  | ANALYST   | 7566 | 1987/4/19  | 3000 |      | 20     |
+|  7566 | JONES  | MANAGER   | 7839 | 1981/4/2   | 2975 |      | 20     |
++-------+--------+-----------+------+------------+------+------+--------+
+5 rows in set (0.00 sec)
+
+mysql> select * from emp order by deptno limit 2,2;
++-------+--------+---------+------+-----------+------+------+--------+
+| EMPNO | ENAME  | JOB     | MGR  | HIREDATE  | SAL  | COMM | DEPTNO |
++-------+--------+---------+------+-----------+------+------+--------+
+|  7934 | MILLER | CLERK   | 7782 | 1982/1/23 | 1300 |      | 10     |
+|  7788 | SCOTT  | ANALYST | 7566 | 1987/4/19 | 3000 |      | 20     |
++-------+--------+---------+------+-----------+------+------+--------+
+2 rows in set (0.00 sec)
+
+mysql> select * from emp order by deptno limit 2,4;
++-------+--------+---------+------+-----------+------+------+--------+
+| EMPNO | ENAME  | JOB     | MGR  | HIREDATE  | SAL  | COMM | DEPTNO |
++-------+--------+---------+------+-----------+------+------+--------+
+|  7934 | MILLER | CLERK   | 7782 | 1982/1/23 | 1300 |      | 10     |
+|  7788 | SCOTT  | ANALYST | 7566 | 1987/4/19 | 3000 |      | 20     |
+|  7566 | JONES  | MANAGER | 7839 | 1981/4/2  | 2975 |      | 20     |
+|  7876 | ADAMS  | CLERK   | 7788 | 1987/5/23 | 1100 |      | 20     |
++-------+--------+---------+------+-----------+------+------+--------+
+4 rows in set (0.00 sec)
+
+mysql> select deptno from emp group by deptno;
++--------+
+| deptno |
++--------+
+| 20     |
+| 30     |
+| 10     |
++--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from shopping;
++----+--------+------+-------+
+| id | name   | num  | money |
++----+--------+------+-------+
+|  1 | Joker  |   10 | 100   |
+|  2 | Joker2 |  200 | 300   |
+|  3 | Joker3 |  300 | 200   |
+|  4 | Joker3 |  300 | 200   |
++----+--------+------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select * from shopping3;
++----+-----------+-------+--------+----------+------+
+| id | name      | money | xihuan | discount | wish |
++----+-----------+-------+--------+----------+------+
+|  1 | xueting   | NULL  | NULL   | NULL     | NULL |
+|  2 | maxueting | 100   | NULL   | NULL     | 10   |
+|  3 | maxueting | NULL  | 1      | NULL     | NULL |
+|  4 | maxueting | NULL  | NULL   | NULL     | 20   |
+|  5 | xiaoming  | NULL  | NULL   | NULL     | NULL |
+|  6 | maxueting | 100   | 1      | NULL     | NULL |
+|  7 | maxueting | 200   | 0      | NULL     | NULL |
++----+-----------+-------+--------+----------+------+
+7 rows in set (0.00 sec)
+
+mysql> select * from shopping,shopping3 where shopping.id=shopping3.id;
++----+--------+------+-------+----+-----------+-------+--------+----------+------+
+| id | name   | num  | money | id | name      | money | xihuan | discount | wish |
++----+--------+------+-------+----+-----------+-------+--------+----------+------+
+|  1 | Joker  |   10 | 100   |  1 | xueting   | NULL  | NULL   | NULL     | NULL |
+|  2 | Joker2 |  200 | 300   |  2 | maxueting | 100   | NULL   | NULL     | 10   |
+|  3 | Joker3 |  300 | 200   |  3 | maxueting | NULL  | 1      | NULL     | NULL |
+|  4 | Joker3 |  300 | 200   |  4 | maxueting | NULL  | NULL   | NULL     | 20   |
++----+--------+------+-------+----+-----------+-------+--------+----------+------+
+4 rows in set (0.00 sec)
+
+mysql> select * from shopping3 where exists(select id from shopping3 where id=5);
++----+-----------+-------+--------+----------+------+
+| id | name      | money | xihuan | discount | wish |
++----+-----------+-------+--------+----------+------+
+|  1 | xueting   | NULL  | NULL   | NULL     | NULL |
+|  2 | maxueting | 100   | NULL   | NULL     | 10   |
+|  3 | maxueting | NULL  | 1      | NULL     | NULL |
+|  4 | maxueting | NULL  | NULL   | NULL     | 20   |
+|  5 | xiaoming  | NULL  | NULL   | NULL     | NULL |
+|  6 | maxueting | 100   | 1      | NULL     | NULL |
+|  7 | maxueting | 200   | 0      | NULL     | NULL |
++----+-----------+-------+--------+----------+------+
+7 rows in set (0.00 sec)
