@@ -1,0 +1,149 @@
+mysql>  create table dianying(id int primary key auto_increment,name varchar(10),nianfen varchar(10),daoyan varchar(10),pingfen int);
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> select * from dianying;
+Empty set (0.01 sec)
+
+mysql> insert into dianying(name,nianfen,daoyan,pingfen)values("duye","2018","Tom",8.6);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> select * from dianying;
++----+------+---------+--------+---------+
+| id | name | nianfen | daoyan | pingfen |
++----+------+---------+--------+---------+
+|  1 | duye | 2018    | Tom    |       9 |
++----+------+---------+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> insert into dianying(name,nianfen,daoyan,pingfen)values("xiyouji","2018","Tangseng",7.4);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from dianying;
++----+---------+---------+----------+---------+
+| id | name    | nianfen | daoyan   | pingfen |
++----+---------+---------+----------+---------+
+|  1 | duye    | 2018    | Tom      |       9 |
+|  2 | xiyouji | 2018    | Tangseng |       7 |
++----+---------+---------+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> insert into dianying(name,nianfen,daoyan,pingfen)values("shuihuzhuan","2011","liubei",8);
+ERROR 1406 (22001): Data too long for column 'name' at row 1
+mysql> insert into dianying(name,nianfen,daoyan,pingfen)values("xiyouji2","2017","Tom2",8);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from dianying;
++----+----------+---------+----------+---------+
+| id | name     | nianfen | daoyan   | pingfen |
++----+----------+---------+----------+---------+
+|  1 | duye     | 2018    | Tom      |       9 |
+|  2 | xiyouji  | 2018    | Tangseng |       7 |
+|  3 | xiyouji2 | 2017    | Tom2     |       8 |
++----+----------+---------+----------+---------+
+3 rows in set (0.00 sec)
+
+mysql> insert into dianying(name,nianfen,daoyan,pingfen)values("duye2","2016","Tom3",5);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select * from dianying;
++----+----------+---------+----------+---------+
+| id | name     | nianfen | daoyan   | pingfen |
++----+----------+---------+----------+---------+
+|  1 | duye     | 2018    | Tom      |       9 |
+|  2 | xiyouji  | 2018    | Tangseng |       7 |
+|  3 | xiyouji2 | 2017    | Tom2     |       8 |
+|  4 | duye2    | 2016    | Tom3     |       5 |
++----+----------+---------+----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> insert into dianying(name,nianfen,daoyan,pingfen)values("qianren","2017","Tom3",6);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from dianying;
++----+----------+---------+----------+---------+
+| id | name     | nianfen | daoyan   | pingfen |
++----+----------+---------+----------+---------+
+|  1 | duye     | 2018    | Tom      |       9 |
+|  2 | xiyouji  | 2018    | Tangseng |       7 |
+|  3 | xiyouji2 | 2017    | Tom2     |       8 |
+|  4 | duye2    | 2016    | Tom3     |       5 |
+|  5 | qianren  | 2017    | Tom3     |       6 |
++----+----------+---------+----------+---------+
+5 rows in set (0.00 sec)
+
+mysql> select name like "%xiyouji%" from dianying;
++-----------------------+
+| name like "%xiyouji%" |
++-----------------------+
+|                     0 |
+|                     1 |
+|                     1 |
+|                     0 |
+|                     0 |
++-----------------------+
+5 rows in set (0.01 sec)
+
+mysql> select name like "%duye%" from dianying;
++--------------------+
+| name like "%duye%" |
++--------------------+
+|                  1 |
+|                  0 |
+|                  0 |
+|                  1 |
+|                  0 |
++--------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from dianying where nianfen="2017";
++----+----------+---------+--------+---------+
+| id | name     | nianfen | daoyan | pingfen |
++----+----------+---------+--------+---------+
+|  3 | xiyouji2 | 2017    | Tom2   |       8 |
+|  5 | qianren  | 2017    | Tom3   |       6 |
++----+----------+---------+--------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from dianying where nianfen="2018";
++----+---------+---------+----------+---------+
+| id | name    | nianfen | daoyan   | pingfen |
++----+---------+---------+----------+---------+
+|  1 | duye    | 2018    | Tom      |       9 |
+|  2 | xiyouji | 2018    | Tangseng |       7 |
++----+---------+---------+----------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from dianying order by pingfen;
++----+----------+---------+----------+---------+
+| id | name     | nianfen | daoyan   | pingfen |
++----+----------+---------+----------+---------+
+|  4 | duye2    | 2016    | Tom3     |       5 |
+|  5 | qianren  | 2017    | Tom3     |       6 |
+|  2 | xiyouji  | 2018    | Tangseng |       7 |
+|  3 | xiyouji2 | 2017    | Tom2     |       8 |
+|  1 | duye     | 2018    | Tom      |       9 |
++----+----------+---------+----------+---------+
+5 rows in set (0.01 sec)
+
+mysql> select * from dianying where daoyan="Tom";
++----+------+---------+--------+---------+
+| id | name | nianfen | daoyan | pingfen |
++----+------+---------+--------+---------+
+|  1 | duye | 2018    | Tom    |       9 |
++----+------+---------+--------+---------+
+1 row in set (0.00 sec)
+
+mysql> select daoyan like "%Tom%" from dianying;
++---------------------+
+| daoyan like "%Tom%" |
++---------------------+
+|                   1 |
+|                   0 |
+|                   1 |
+|                   1 |
+|                   1 |
++---------------------+
+5 rows in set (0.00 sec)
+
+mysql>
+
