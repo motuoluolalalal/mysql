@@ -1,0 +1,59 @@
+mysql> create table yonghu(yonghu_id int auto_increment primary key not null,yonghu_name varchar(40) not null,mima varchar(30) not null)engine=innodb default charset=utf8;
+Query OK, 0 rows affected, 1 warning (0.09 sec)
+
+mysql> create table zhuangbei(yonghu_id int auto_increment primary key not null,zhuangbei_name varchar(30) not null,zhuangbei_money varchar(20) not null,key`idx_fk_yonghu_id`(yonghu_id),constraint`fk_yonghu_zhuangbei`foreign key(yonghu_id)references yonghu(yonghu_id)on delete restrict on update cascade)engine=innodb default charset=utf8;
+Query OK, 0 rows affected, 1 warning (0.14 sec)
+
+mysql> insert into yonghu(yonghu_name,mima)values("xiaohua","1234568"),("xiaoming","6541234");
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into zhuangbei(yonghu_id,zhuangbei_name,zhuangbei_money)values(1,"98k",5000),(3,"cidao",500);
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`shopping`.`zhuangbei`, CONSTRAINT `fk_yonghu_zhuangbei` FOREIGN KEY (`yonghu_id`) REFERENCES `yonghu` (`yonghu_id`) ON UPDATE CASCADE)
+mysql> insert into zhuangbei(yonghu_id,zhuangbei_name,zhuangbei_money)values(1,"98k",5000),(2,"cidao",500);
+Query OK, 2 rows affected (0.08 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from yonghu;
++-----------+-------------+---------+
+| yonghu_id | yonghu_name | mima    |
++-----------+-------------+---------+
+|         1 | xiaohua     | 1234568 |
+|         2 | xiaoming    | 6541234 |
++-----------+-------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> select * from zhuangbei;
++-----------+----------------+-----------------+
+| yonghu_id | zhuangbei_name | zhuangbei_money |
++-----------+----------------+-----------------+
+|         1 | 98k            | 5000            |
+|         2 | cidao          | 500             |
++-----------+----------------+-----------------+
+2 rows in set (0.00 sec)
+
+mysql> update yonghu set yonghu_id=200 where yonghu_id=1;
+Query OK, 1 row affected (0.02 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> delete from zhuangbei where yonghu_id=200;
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select * from yonghu;
++-----------+-------------+---------+
+| yonghu_id | yonghu_name | mima    |
++-----------+-------------+---------+
+|         2 | xiaoming    | 6541234 |
+|       200 | xiaohua     | 1234568 |
++-----------+-------------+---------+
+2 rows in set (0.00 sec)
+
+mysql> show table status like"zhuangbei";
++-----------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-----------------+----------+----------------+---------+
+| Name      | Engine | Version | Row_format | Rows | Avg_row_length | Data_length | Max_data_length | Index_length | Data_free | Auto_increment | Create_time         | Update_time         | Check_time | Collation       | Checksum | Create_options | Comment |
++-----------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-----------------+----------+----------------+---------+
+| zhuangbei | InnoDB |      10 | Dynamic    |    1 |          16384 |       16384 |               0 |        16384 |         0 |              3 | 2018-11-16 13:47:33 | 2018-11-16 13:54:17 | NULL       | utf8_general_ci |     NULL |                |         |
++-----------+--------+---------+------------+------+----------------+-------------+-----------------+--------------+-----------+----------------+---------------------+---------------------+------------+-----------------+----------+----------------+---------+
+1 row in set (0.08 sec)
+
+mysql>
