@@ -1,0 +1,54 @@
+mysql> use shopping;
+Database changed
+mysql> delimiter$$
+    -> ;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'delimiter$$' at line 1
+mysql> delimiter $$
+mysql> ;
+    -> ;
+    -> ^C
+mysql> delimiter $$
+mysql> create
+    -> ;create
+    -> ;
+    -> ^C
+mysql> create table MOMO(MOMO_id int auto_increment primary key not null,MOMO_name varchar(40) not null,xingbie varchar(10) not null,dianhua int)engine=innodb default charset=utf8;
+    -> ^C
+mysql> delimiter ;
+mysql> create table MOMO(MOMO_id int auto_increment primary key not null,MOMO_name varchar(40) not null,xingbie varchar(10) not null,dianhua int)engine=innodb default charset=utf8;
+ERROR 1050 (42S01): Table 'momo' already exists
+mysql> insert into MOMO(MOMO_name,xingbie,dianhua)values("yizhixiaohuaduo","nv",123456),("wozemmezhemehaokan","nan",6953241),("wodetiana","nv",5478621);
+Query OK, 3 rows affected (0.10 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select * from momo;
++---------+--------------------+---------+---------+
+| MOMO_id | MOMO_name          | xingbie | dianhua |
++---------+--------------------+---------+---------+
+|       1 | yizhixiaohuaduo    | nv      |  123456 |
+|       2 | wozemmezhemehaokan | nan     | 6953241 |
+|       3 | wodetiana          | nv      | 5478621 |
++---------+--------------------+---------+---------+
+3 rows in set (0.00 sec)
+
+mysql> insert into xihuanderen(momo_id,xihuanderen_name varchar(40),xihuanderen_weixin varchar(30))values(1,"maxueting","xiaoxiannv"),(2,"xueting","meinv");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'varchar(40),xihuanderen_weixin varchar(30))values(1,"maxueting","xiaoxiannv"),(2' at line 1
+mysql> insert into xihuanderen(momo_id,xihuanderen_name,xihuanderen_weixin)values(1,"maxueting","xiaoxiannv"),(2,"xueting","meinv");
+Query OK, 2 rows affected (0.11 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select * from xihuanderen;
++---------+------------------+--------------------+
+| momo_id | xihuanderen_name | xihuanderen_weixin |
++---------+------------------+--------------------+
+|       1 | maxueting        | xiaoxiannv         |
+|       2 | xueting          | meinv              |
++---------+------------------+--------------------+
+2 rows in set (0.00 sec)
+
+ create procedure my_first_pri(in momo_Name varchar(40),out xihuanderen_Name varchar(40),xihuanderen_weixin varchar(20))
+    -> reads sql data
+    -> begin
+    -> select momo.momo_name from momo where momo.momo_id in(select xihuanderen.momo_id from xihuanderen where x_ihuanderen=xihuanderen_name);
+    -> select momo_name into momo_name;
+    -> end $$
